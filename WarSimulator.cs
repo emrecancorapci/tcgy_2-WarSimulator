@@ -7,32 +7,44 @@ namespace tcgy_2_War_Simulator
     {
         public static void CreateBattle(int firstArmySize, int secondArmySize)
         {
-            var firstArmy = CreateSoldierList(firstArmySize);
-            var secondArmy = CreateSoldierList(secondArmySize);
+            var firstArmy = CreateArmy(firstArmySize);
+            var secondArmy = CreateArmy(secondArmySize);
+
 
 
             while (firstArmy.Count > 0 && secondArmy.Count > 0)
             {
+                var soldier1 = firstArmy.Dequeue();
+                var soldier2 = secondArmy.Dequeue();
 
+                var isFirstSoldierWin = Fight(soldier1, soldier2);
+
+                if (isFirstSoldierWin) firstArmy.Enqueue(soldier1);
+                else secondArmy.Enqueue(soldier2);
             }
+
+            var winningArmy = firstArmy.Count == 0 ?
+                (secondArmy.Count == 0 ? "draw" : "second") : "first";
+            SimulationConsole.ArmyWon(winningArmy);
+
         }
 
-        public static List<Soldier> CreateSoldierList(int length)
+        public static Queue<Soldier> CreateArmy(int size)
         {
-            var soldierList = new List<Soldier>();
+            var soldierList = new Queue<Soldier>();
 
-            for (var i = 0; i < length; i++)
+            for (var i = 0; i < size; i++)
             {
                 var soldier = new Soldier();
-                soldierList.Add(soldier);
+                soldierList.Enqueue(soldier);
             }
 
-            SimulationConsole.SoldierList(length);
+            SimulationConsole.Army(size);
 
             return soldierList;
         }
 
-        public static Soldier Fight(Soldier soldier1, Soldier soldier2)
+        public static bool Fight(Soldier soldier1, Soldier soldier2)
         {
             soldier1.Color = ConsoleColor.Blue;
             soldier2.Color = ConsoleColor.Red;
@@ -44,10 +56,10 @@ namespace tcgy_2_War_Simulator
 
                 soldier2.Attack(soldier1);
             }
+            
+            var isSoldier1Alive = soldier1.IsAlive;
 
-            var deadSoldier = soldier1.IsAlive ? soldier2 : soldier1;
-
-            return deadSoldier;
+            return isSoldier1Alive;
         }
 
         public static void RandomFight()

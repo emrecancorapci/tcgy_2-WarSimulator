@@ -31,10 +31,11 @@ namespace tcgy_2_War_Simulator
 
         public void Attack(Soldier enemy)
         {
+            SimulationConsole.AttackInfo(this, enemy);
+
             var damage = Random.Next(HitPoint);
             var amount = enemy.GetDamage(damage + Weapon.Damage);
 
-            SimulationConsole.AttackInfo(this, enemy);
             SimulationConsole.AttackOutput(enemy, amount);
 
             if (enemy.Health >= 0) return;
