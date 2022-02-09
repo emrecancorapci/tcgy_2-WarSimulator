@@ -19,21 +19,22 @@ namespace tcgy_2_War_Simulator
         private const int HitPointDownLimit = 1;
 
 
-        public Soldier()
+        public Soldier(string sideName = "", bool info = false)
         {
-            NameSoldier();
+            NameSoldier(sideName);
 
             HitPoint = Random.Next(HitPointDownLimit, HitPointUpLimit);
-            Weapon = new Weapon(Random.Next(0,3));
-            SimulationConsole.SoldierInfo(this);
+            Weapon = new Weapon(Random.Next(0,4));
+
+            if (info) SimulationConsole.SoldierInfo(this);
         }
 
         public void Attack(Soldier enemy)
         {
             var damage = Random.Next(HitPoint);
-            SimulationConsole.AttackInfo(this, enemy);
-
             var amount = enemy.GetDamage(damage + Weapon.Damage);
+
+            SimulationConsole.AttackInfo(this, enemy);
             SimulationConsole.AttackOutput(enemy, amount);
 
             if (enemy.Health >= 0) return;
@@ -51,9 +52,9 @@ namespace tcgy_2_War_Simulator
             return damageAmount;
         }
 
-        private void NameSoldier()
+        private void NameSoldier(string sideName)
         {
-            Name = $"{++Id}. Soldier";
+            Name = $"{sideName} - {++Id}. Soldier";
         }
     }
 }

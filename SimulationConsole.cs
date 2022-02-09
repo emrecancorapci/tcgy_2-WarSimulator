@@ -50,5 +50,11 @@ namespace tcgy_2_War_Simulator
         {
             WriteColoredLine($"{soldier.Name} is DEAD!", ConsoleColor.DarkRed);
         }
+
+        public static void SoldierList(int length)
+        {
+            WriteColoredLine($"A soldier list created with {length} members.",
+                ConsoleColor.DarkGreen);
+        }
     }
 }
