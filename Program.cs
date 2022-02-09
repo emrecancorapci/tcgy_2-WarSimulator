@@ -6,7 +6,7 @@ namespace tcgy_2_War_Simulator
     {
         static void Main(string[] args)
         {
-            WarSimulator.RandomFight();
+            WarSimulator.CreateBattle(5,5);
         }
     }
 }

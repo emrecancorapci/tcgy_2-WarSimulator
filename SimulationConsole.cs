@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace tcgy_2_War_Simulator
 {
@@ -49,6 +51,32 @@ namespace tcgy_2_War_Simulator
         public static void DeadSoldierInfo(Soldier soldier)
         {
             WriteColoredLine($"{soldier.Name} is DEAD!", ConsoleColor.DarkRed);
+        }
+
+        public static void Army(int length)
+        {
+            WriteColoredLine($"An army created with {length} soldiers.",
+                ConsoleColor.DarkGreen);
+        }
+
+        public static void ArmyWon(string winningArmy)
+        {
+            if (winningArmy != null)
+            {
+                if (winningArmy == "first")
+                {
+                    WriteColored("The first army ", ConsoleColor.Blue);
+                }
+                else
+                {
+                    WriteColored("The second army ", ConsoleColor.Red);
+                }
+                Console.WriteLine("won!");
+            }
+            else
+            {
+                Console.WriteLine("Nobody won. :(");
+            }
         }
     }
 }
