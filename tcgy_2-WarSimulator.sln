@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tcgy_2-WarSimulator", "tcgy_2-WarSimulator.csproj", "{B316826C-2E16-45B0-962C-67050AD7D47A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B316826C-2E16-45B0-962C-67050AD7D47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B316826C-2E16-45B0-962C-67050AD7D47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B316826C-2E16-45B0-962C-67050AD7D47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B316826C-2E16-45B0-962C-67050AD7D47A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A3AEA68-E976-438C-B36F-419F819FF3CD}
+	EndGlobalSection
+EndGlobal
