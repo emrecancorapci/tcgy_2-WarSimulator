@@ -8,21 +8,23 @@ namespace tcgy_2_War_Simulator
 {
     internal class Weapon
     {
-        public int Damage { get; set; }
-        public string Name { get; set; }
+        private int damage;
+        private string name;
 
-        public Weapon(int damageAmount)
+        public Weapon(string name, int damage)
         {
-            Damage = damageAmount;
+            this.name = name;
+            this.damage = damage;
+        }
 
-            Name = damageAmount switch
-            {
-                0 => "Fist",
-                1 => "Blade",
-                2 => "Rifle",
-                3 => "Tank",
-                _ => "Unknown Weapon"
-            };
+        public int GetDamage()
+        {
+            return damage;
+        }
+
+        public string GetName()
+        {
+            return name;
         }
     }
 }

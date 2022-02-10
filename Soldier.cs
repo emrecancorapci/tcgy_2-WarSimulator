@@ -24,7 +24,7 @@ namespace tcgy_2_War_Simulator
             NameSoldier(sideName);
 
             HitPoint = Random.Next(HitPointDownLimit, HitPointUpLimit);
-            Weapon = new Weapon(Random.Next(0,4));
+            Weapon = Weapons.GetRandomWeapon();
 
             if (info) SimulationConsole.SoldierInfo(this);
         }
@@ -34,7 +34,7 @@ namespace tcgy_2_War_Simulator
             SimulationConsole.AttackInfo(this, enemy);
 
             var damage = Random.Next(HitPoint);
-            var amount = enemy.GetDamage(damage + Weapon.Damage);
+            var amount = enemy.GetDamage(damage + Weapon.GetDamage());
 
             SimulationConsole.AttackOutput(enemy, amount);
 

@@ -24,7 +24,7 @@ namespace tcgy_2_War_Simulator
             WriteColored(" is attacking to ", ConsoleColor.White);
             WriteColored($"{defender.Name}({defender.Health})", defender.Color);
             WriteColored(" with ", ConsoleColor.White);
-            WriteColored($"{attacker.Weapon.Name}!\n", ConsoleColor.Green);
+            WriteColored($"{attacker.Weapon.GetName()}!\n", ConsoleColor.Green);
         }
         public static void AttackOutput(Soldier defender, int amount)
         {
@@ -41,7 +41,7 @@ namespace tcgy_2_War_Simulator
             WriteColoredLine($"{soldier.Name}", ConsoleColor.Blue);
 
             Console.Write(" Weapon : ");
-            WriteColoredLine($"{soldier.Weapon.Name}", ConsoleColor.Red);
+            WriteColoredLine($"{soldier.Weapon.GetName()}", ConsoleColor.Red);
 
             Console.Write(" Hit-point : ");
             WriteColoredLine($"{soldier.HitPoint}", ConsoleColor.Yellow);
