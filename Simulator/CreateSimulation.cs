@@ -42,7 +42,7 @@ namespace tcgy_2_WarSimulator.Simulator
         #endregion
 
 
-        public static void SoldierBattle()
+        public static void Battle()
         {
             var soldier1 = new Soldier();
             var soldier2 = new Soldier();
