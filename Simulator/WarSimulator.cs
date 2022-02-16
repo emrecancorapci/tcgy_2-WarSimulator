@@ -1,5 +1,6 @@
 ﻿using System;
 using tcgy_2_WarSimulator.Entities;
+using tcgy_2_WarSimulator.Simulator.ConsoleOutput;
 
 namespace tcgy_2_WarSimulator.Simulator
 {
@@ -12,8 +13,8 @@ namespace tcgy_2_WarSimulator.Simulator
             if (firstArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(firstArmySize));
             if (secondArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(secondArmySize));
 
-            var firstArmy = new Army(SimulationConsole.FirstArmyName, firstArmySize);
-            var secondArmy = new Army(SimulationConsole.SecondArmyName, secondArmySize);
+            var firstArmy = new Army(firstArmySize, OutputSettings.FirstArmyName);
+            var secondArmy = new Army(secondArmySize, OutputSettings.SecondArmyName);
 
             SimulationConsole.ArmyInfo(firstArmy);
             SimulationConsole.ArmyInfo(secondArmy);

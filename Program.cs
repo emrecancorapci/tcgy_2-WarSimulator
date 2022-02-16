@@ -9,7 +9,7 @@ namespace tcgy_2_WarSimulator
             var menu = new Menu();
             menu.Banner();
 
-            CreateSimulation.CreateArmyBattle();
+            CreateSimulation.War();
         }
     }
 }

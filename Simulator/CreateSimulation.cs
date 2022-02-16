@@ -8,7 +8,7 @@ namespace tcgy_2_WarSimulator.Simulator
     {
         #region Army
 
-        public static void CreateArmyBattle(int firstArmySize = 10, int secondArmySize = 10)
+        public static void War(int firstArmySize = 10, int secondArmySize = 10)
         {
             if (firstArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(firstArmySize));
             if (secondArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(secondArmySize));
@@ -42,7 +42,7 @@ namespace tcgy_2_WarSimulator.Simulator
         #endregion
 
 
-        public static void CreateBattle()
+        public static void SoldierBattle()
         {
             var soldier1 = new Soldier();
             var soldier2 = new Soldier();
