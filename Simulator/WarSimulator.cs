@@ -7,7 +7,7 @@ namespace tcgy_2_WarSimulator.Simulator
     {
         #region Army
 
-        public static void CreateArmyBattle(int firstArmySize = 10, int secondArmySize = 10)
+        public static void CreateArmyBattle(int firstArmySize = 5, int secondArmySize = 5)
         {
             if (firstArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(firstArmySize));
             if (secondArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(secondArmySize));
@@ -35,12 +35,10 @@ namespace tcgy_2_WarSimulator.Simulator
                 if (isFirstSoldierWin) army1.AddSoldier(soldier1);
                 else army2.AddSoldier(soldier2);
             }
-
             return army1.Count != 0;
         }
 
         #endregion
-
 
         public static void CreateBattle()
         {
@@ -64,9 +62,7 @@ namespace tcgy_2_WarSimulator.Simulator
                 if (!soldier2.IsAlive) break;
 
                 Attack(soldier2, soldier1);
-
             }
-
             var deadSoldier = soldier1.IsAlive ? soldier2 : soldier1;
             SimulationConsole.DeadSoldierInfo(deadSoldier);
 
@@ -79,7 +75,6 @@ namespace tcgy_2_WarSimulator.Simulator
             defender.GetDamage(damageAmount);
 
             SimulationConsole.ShowAttackInfo(attacker, defender, damageAmount);
-
         }
     }
 }
