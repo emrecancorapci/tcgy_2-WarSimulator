@@ -4,30 +4,30 @@ namespace tcgy_2_WarSimulator.Entities
 {
     internal class Army
     {
-        private Queue<Soldier> soldiers = new Queue<Soldier>();
+        private readonly Queue<Soldier> _soldiers = new();
 
-        public int Count => soldiers.Count;
-        public string Name { get; private set; }
+        public int Count => _soldiers.Count;
+        public string Name { get; }
 
-        public Army(string name, int size)
+        public Army(int size, string name)
         {
             Name = name;
 
             for (var i = 0; i < size; i++)
             {
                 var soldier = new ArmySoldier(name, i);
-                soldiers.Enqueue(soldier);
+                _soldiers.Enqueue(soldier);
             }
         }
 
         public Soldier GetSolider()
         {
-            return soldiers.Dequeue();
+            return _soldiers.Dequeue();
         }
 
         public void AddSoldier(Soldier soldier)
         {
-            soldiers.Enqueue(soldier);
+            _soldiers.Enqueue(soldier);
         }
     }
 }

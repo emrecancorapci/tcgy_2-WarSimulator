@@ -2,23 +2,23 @@
 {
     public class Weapon
     {
-        private int damage;
-        private string name;
+        private readonly int _damage;
+        private readonly string _name;
 
         public Weapon(string name, int damage)
         {
-            this.name = name;
-            this.damage = damage;
+            _name = name;
+            _damage = damage;
         }
 
         public int GetDamage()
         {
-            return damage;
+            return _damage;
         }
 
         public string GetName()
         {
-            return name;
+            return _name;
         }
     }
 }

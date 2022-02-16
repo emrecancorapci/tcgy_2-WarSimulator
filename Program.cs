@@ -6,8 +6,10 @@ namespace tcgy_2_WarSimulator
     {
         private static void Main()
         {
-            Menu menu = new Menu();
-            WarSimulator.CreateArmyBattle();
+            var menu = new Menu();
+            menu.Banner();
+
+            CreateSimulation.CreateArmyBattle();
         }
     }
 }
