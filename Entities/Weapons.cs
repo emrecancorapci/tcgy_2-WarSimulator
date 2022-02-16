@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace tcgy_2_WarSimulator
+namespace tcgy_2_WarSimulator.Entities
 {
     internal static class Weapons
     {

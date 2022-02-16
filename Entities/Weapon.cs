@@ -1,6 +1,6 @@
-﻿namespace tcgy_2_WarSimulator
+﻿namespace tcgy_2_WarSimulator.Entities
 {
-    internal class Weapon
+    public class Weapon
     {
         private int damage;
         private string name;
