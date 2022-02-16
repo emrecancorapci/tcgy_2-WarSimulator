@@ -43,8 +43,9 @@ namespace tcgy_2_WarSimulator.Entities
 
         public int GetDamage(int damageAmount)
         {
-            if (damageAmount < Armor) return SimulatorSettings.MinimumDamage;
-            
+            if (damageAmount < Armor)
+                damageAmount = SimulatorSettings.MinimumDamage;
+
             Health -= damageAmount;
 
             return damageAmount;
@@ -64,7 +65,7 @@ namespace tcgy_2_WarSimulator.Entities
 
         private void NameArmySoldier(string sideName, string name = "Soldier")
         {
-            Name = $"{sideName}'s {++_soldierId}. Soldier";
+            Name = $"{sideName}'s {++_soldierId}.{name}";
         }
 
     }

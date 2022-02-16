@@ -1,4 +1,6 @@
-﻿using tcgy_2_WarSimulator.Simulator;
+﻿using System;
+using tcgy_2_WarSimulator.Simulator;
+using tcgy_2_WarSimulator.Simulator.ConsoleOutput;
 
 namespace tcgy_2_WarSimulator
 {
@@ -6,9 +8,7 @@ namespace tcgy_2_WarSimulator
     {
         private static void Main()
         {
-            var menu = new Menu();
-            menu.Banner();
-
+            SimulationConsole.Banner();
             CreateSimulation.War();
         }
     }

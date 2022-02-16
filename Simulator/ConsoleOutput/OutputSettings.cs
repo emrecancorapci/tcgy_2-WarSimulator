@@ -4,6 +4,8 @@ namespace tcgy_2_WarSimulator.Simulator.ConsoleOutput
 {
     internal class OutputSettings
     {
+        public static int ScreenWidth = 150;
+
         #region Soldier
 
         public static string FirstSoldierName { get; private set; } = "Soldier";

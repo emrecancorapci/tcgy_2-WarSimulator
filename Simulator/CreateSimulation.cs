@@ -8,7 +8,7 @@ namespace tcgy_2_WarSimulator.Simulator
     {
         #region Army
 
-        public static void War(int firstArmySize = 10, int secondArmySize = 10)
+        public static void War(int firstArmySize = 5, int secondArmySize = 5)
         {
             if (firstArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(firstArmySize));
             if (secondArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(secondArmySize));
@@ -57,14 +57,17 @@ namespace tcgy_2_WarSimulator.Simulator
         {
             SimulationConsole.ShowFightInfo(soldier1, soldier2);
 
+            var (attacker, defender) = (soldier1, soldier2);
+
             while (soldier1.IsAlive && soldier2.IsAlive)
             {
-                Attack(soldier1, soldier2);
-                Attack(soldier2, soldier1);
+                Attack(attacker, defender);
+                (attacker, defender) = (defender, attacker);
             }
 
-            var deadSoldier = soldier1.IsAlive ? soldier2 : soldier1;
-            SimulationConsole.DeadSoldierInfo(deadSoldier);
+            var (alive, dead) = soldier1.IsAlive ? (soldier1, soldier2) : (soldier2, soldier1);
+
+            SimulationConsole.DeadSoldierInfo(alive, dead);
 
             return soldier1.IsAlive;
         }
@@ -74,9 +77,9 @@ namespace tcgy_2_WarSimulator.Simulator
             if (!defender.IsAlive || !attacker.IsAlive) return;
 
             var damageAmount = attacker.GiveDamage();
-            defender.GetDamage(damageAmount);
+            var inflictedDamage = defender.GetDamage(damageAmount);
 
-            SimulationConsole.ShowAttackInfo(attacker, defender, damageAmount);
+            SimulationConsole.ShowAttackInfo(attacker, defender, inflictedDamage);
         }
     }
 }
