@@ -13,8 +13,11 @@ namespace tcgy_2_WarSimulator.Simulator
             if (firstArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(firstArmySize));
             if (secondArmySize <= 0) throw new ArgumentOutOfRangeException(nameof(secondArmySize));
 
-            var firstArmy = new Army(firstArmySize, OutputSettings.FirstArmyName);
-            var secondArmy = new Army(secondArmySize, OutputSettings.SecondArmyName);
+            var (firstArmy, secondArmy) =
+            (
+                new Army(firstArmySize, OutputSettings.FirstArmyName),
+                new Army(secondArmySize, OutputSettings.SecondArmyName)
+            );
 
             SimulationConsole.ArmyInfo(firstArmy);
             SimulationConsole.ArmyInfo(secondArmy);
@@ -28,8 +31,7 @@ namespace tcgy_2_WarSimulator.Simulator
         {
             while (army1.Count > 0 && army2.Count > 0)
             {
-                var soldier1 = army1.GetSolider();
-                var soldier2 = army2.GetSolider();
+                var (soldier1, soldier2) = (army1.GetSolider(), army2.GetSolider());
 
                 var isFirstSoldierWin = Fight(soldier1, soldier2);
 
@@ -42,10 +44,9 @@ namespace tcgy_2_WarSimulator.Simulator
         #endregion
 
 
-        public static void Battle()
+        public static void OneOne()
         {
-            var soldier1 = new Soldier();
-            var soldier2 = new Soldier();
+            var (soldier1, soldier2) = (new Soldier(), new Soldier());
 
             SimulationConsole.ShowSoldierInfo(soldier1);
             SimulationConsole.ShowSoldierInfo(soldier2);
@@ -59,11 +60,12 @@ namespace tcgy_2_WarSimulator.Simulator
 
             var (attacker, defender) = (soldier1, soldier2);
 
-            while (soldier1.IsAlive && soldier2.IsAlive)
+            do 
             {
                 Attack(attacker, defender);
                 (attacker, defender) = (defender, attacker);
             }
+            while (attacker.IsAlive && defender.IsAlive);
 
             var (alive, dead) = soldier1.IsAlive ? (soldier1, soldier2) : (soldier2, soldier1);
 
@@ -81,5 +83,19 @@ namespace tcgy_2_WarSimulator.Simulator
 
             SimulationConsole.ShowAttackInfo(attacker, defender, inflictedDamage);
         }
+
+
+
+        /*
+        public static Action<Soldier, Soldier> Attacking = (attacker, defender) =>
+        {
+            if (!defender.IsAlive || !attacker.IsAlive) return;
+
+            var damageAmount = attacker.GiveDamage();
+            var inflictedDamage = defender.GetDamage(damageAmount);
+
+            SimulationConsole.ShowAttackInfo(attacker, defender, inflictedDamage);
+        };
+        */
     }
 }

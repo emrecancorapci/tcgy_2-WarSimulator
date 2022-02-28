@@ -23,10 +23,7 @@ namespace tcgy_2_WarSimulator.Simulator.ConsoleOutput
             var spaceToCenter = (width + plus) / 2 - str.Length / 2;
             var space = "";
 
-            for (var i = 0; i < spaceToCenter; i++)
-            {
-                space += " ";
-            }
+            for (var i = 0; i < spaceToCenter; i++) space += " ";
 
             return $"#{space}{str}{space}#";
         }
@@ -34,24 +31,15 @@ namespace tcgy_2_WarSimulator.Simulator.ConsoleOutput
         {
             var space = "";
 
-            for (var i = 0; i < width - 2; i++)
-            {
-                space += " ";
-            }
+            for (var i = 0; i < width - 2; i++) space += " ";
 
-            for (var i = 0; i < repeat; i++)
-            {
-                Console.WriteLine($"#{space}#");
-            }
+            for (var i = 0; i < repeat; i++) Console.WriteLine($"#{space}#");
         }
-        public static void Line(int length, char character)
+        public static void DrawLine(int length, char character)
         {
             var line = "";
 
-            for (var i = 0; i < length; i++)
-            {
-                line += character;
-            }
+            for (var i = 0; i < length; i++) line += character;
 
             Console.Write(line + "\n");
         }

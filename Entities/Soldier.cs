@@ -43,8 +43,7 @@ namespace tcgy_2_WarSimulator.Entities
 
         public int GetDamage(int damageAmount)
         {
-            if (damageAmount < Armor)
-                damageAmount = SimulatorSettings.MinimumDamage;
+            if (damageAmount < Armor) damageAmount = SimulatorSettings.MinimumDamage;
 
             Health -= damageAmount;
 
@@ -67,6 +66,5 @@ namespace tcgy_2_WarSimulator.Entities
         {
             Name = $"{sideName}'s {++_soldierId}.{name}";
         }
-
     }
 }

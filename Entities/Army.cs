@@ -12,12 +12,7 @@ namespace tcgy_2_WarSimulator.Entities
         public Army(int size, string name)
         {
             Name = name;
-
-            for (var i = 0; i < size; i++)
-            {
-                var soldier = new ArmySoldier(name, i);
-                _soldiers.Enqueue(soldier);
-            }
+            AddSoldierToList(size);
         }
 
         public Soldier GetSolider()
@@ -28,6 +23,15 @@ namespace tcgy_2_WarSimulator.Entities
         public void AddSoldier(Soldier soldier)
         {
             _soldiers.Enqueue(soldier);
+        }
+
+        private void AddSoldierToList(int size)
+        {
+            for (var i = 0; i < size; i++)
+            {
+                var soldier = new ArmySoldier(Name, i);
+                _soldiers.Enqueue(soldier);
+            }
         }
     }
 }

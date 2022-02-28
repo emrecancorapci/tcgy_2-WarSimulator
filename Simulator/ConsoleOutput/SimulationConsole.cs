@@ -1,105 +1,107 @@
 ﻿using System;
 using tcgy_2_WarSimulator.Entities;
+using static System.Console;
+using static tcgy_2_WarSimulator.Simulator.ConsoleOutput.FormattedWrite;
 
 namespace tcgy_2_WarSimulator.Simulator.ConsoleOutput
 {
     internal static class SimulationConsole
     {
-        public static int WindowWidth = 150;
+        public static int WindowWidth = SimulatorSettings.WindowWidth;
         public static void ShowFightInfo(Soldier soldier1, Soldier soldier2)
         {
             if (!OutputSettings.FightInfo) return;
 
-            FormattedWrite.Colored($"\n{soldier1.Name}({soldier1.Health}) ", OutputSettings.FirstSoldierColor);
-            Console.Write("with ");
-            FormattedWrite.Colored($"{soldier1.Weapon.GetName()} ", OutputSettings.FirstSoldierColor);
+            Colored($"\n{soldier1.Name}({soldier1.Health}) ", OutputSettings.FirstSoldierColor);
+            Write("with ");
+            Colored($"{soldier1.Weapon.GetName()} ", OutputSettings.FirstSoldierColor);
 
-            Console.Write("VS ");
+            Write("VS ");
 
-            FormattedWrite.Colored($"{soldier2.Name}({soldier2.Health}) ", OutputSettings.SecondSoldierColor);
-            Console.Write("with ");
-            FormattedWrite.ColoredLine($"{soldier2.Weapon.GetName()}", OutputSettings.SecondSoldierColor);
+            Colored($"{soldier2.Name}({soldier2.Health}) ", OutputSettings.SecondSoldierColor);
+            Write("with ");
+            ColoredLine($"{soldier2.Weapon.GetName()}", OutputSettings.SecondSoldierColor);
 
         }
         public static void ShowAttackInfo(Soldier attacker, Soldier defender, int amount)
         {
             if (!OutputSettings.AttackInfo) return;
 
-            FormattedWrite.Colored($"{attacker.Name}({attacker.Health}) ", OutputSettings.FirstSoldierColor);
-            Console.Write("is attacking to ");
-            FormattedWrite.Colored($"{defender.Name}({defender.Health + amount})", OutputSettings.SecondSoldierColor);
-            Console.Write("with ");
-            FormattedWrite.ColoredLine($"{attacker.Weapon.GetName()}!", ConsoleColor.Green);
+            Colored($"{attacker.Name}({attacker.Health}) ", OutputSettings.FirstSoldierColor);
+            Write("is attacking to ");
+            Colored($"{defender.Name}({defender.Health + amount})", OutputSettings.SecondSoldierColor);
+            Write("with ");
+            ColoredLine($"{attacker.Weapon.GetName()}!", ConsoleColor.Green);
 
-            FormattedWrite.Colored($"{defender.Name} ", OutputSettings.SecondSoldierColor);
-            Console.Write("got ");
-            FormattedWrite.Colored($"{amount} ", ConsoleColor.DarkRed);
+            Colored($"{defender.Name} ", OutputSettings.SecondSoldierColor);
+            Write("got ");
+            Colored($"{amount} ", ConsoleColor.DarkRed);
 
-            Console.WriteLine("damage! ");
+            WriteLine("damage! ");
         }
         public static void ShowSoldierInfo(Soldier soldier)
         {
             if (!OutputSettings.SoldierInfo) return;
 
-            Console.WriteLine("===========================");
+            WriteLine("===========================");
 
-            Console.Write(" Name : ");
-            FormattedWrite.ColoredLine($"{soldier.Name}",
-                ConsoleColor.Blue);
+            Write(" Name : ");
+            ColoredLine($"{soldier.Name}", ConsoleColor.Blue);
 
-            Console.Write(" Weapon : ");
-            FormattedWrite.ColoredLine($"{soldier.Weapon.GetName()}",
-                ConsoleColor.Red);
+            Write(" Weapon : ");
+            ColoredLine($"{soldier.Weapon.GetName()}", ConsoleColor.Red);
 
-            Console.Write(" Hit-point : ");
-            FormattedWrite.ColoredLine($"{soldier.HitPoint}",
-                ConsoleColor.Yellow);
+            Write(" Hit-point : ");
+            ColoredLine($"{soldier.HitPoint}", ConsoleColor.Yellow);
 
-            Console.WriteLine("===========================\n");
+            WriteLine("===========================\n");
+        }
+        public static void ShowSoldiersInfo(Soldier soldier, Soldier soldier2)
+        {
+            if (!OutputSettings.SoldierInfo) return;
+
+            ShowSoldierInfo(soldier);
+            ShowSoldierInfo(soldier2);
         }
         public static void DeadSoldierInfo(Soldier soldier)
         {
             if (!OutputSettings.DeadInfo) return;
-            FormattedWrite.ColoredLine($"{soldier.Name} is DEAD!", ConsoleColor.DarkRed);
+            ColoredLine($"{soldier.Name} is DEAD!", ConsoleColor.DarkRed);
         }
 
         public static void DeadSoldierInfo(Soldier alive, Soldier dead)
         {
             if (!OutputSettings.DeadInfo) return;
 
-            FormattedWrite.Colored(alive.Name, ConsoleColor.Green);
-            Console.Write(" is killed ");
-            FormattedWrite.Colored(dead.Name, ConsoleColor.Red);
-            Console.Write(" with ");
-            FormattedWrite.ColoredLine($"{alive.Weapon.GetName()}.", ConsoleColor.Yellow);
+            Colored(alive.Name, ConsoleColor.Green);
+            Write(" is killed ");
+            Colored(dead.Name, ConsoleColor.Red);
+            Write(" with ");
+            ColoredLine($"{alive.Weapon.GetName()}.", ConsoleColor.Yellow);
         }
 
         public static void ArmyInfo(Army army)
         {
-            FormattedWrite.ColoredLine($"An army created with {army.Count} soldiers.",
+            ColoredLine($"An army created with {army.Count} soldiers.",
                 ConsoleColor.DarkGreen);
         }
 
         public static void ArmyWon(bool winningArmy)
         {
-            if (winningArmy) FormattedWrite.Colored(
-                $"{OutputSettings.FirstArmyName} ",
+            if (winningArmy) Colored($"{OutputSettings.FirstArmyName} ",
                 OutputSettings.FirstArmyColor);
 
-            else FormattedWrite.Colored(
-                $"{OutputSettings.SecondArmyName} ",
+            else Colored($"{OutputSettings.SecondArmyName} ",
                 OutputSettings.SecondArmyColor);
             
-            Console.WriteLine("won!");
+            WriteLine("won!");
         }
 
         public static void Banner()
         {
-            Console.SetWindowSize(WindowWidth, Console.WindowHeight);
+            DrawLine(WindowWidth , '=');
 
-            FormattedWrite.Line(WindowWidth , '=');
-
-            Console.WriteLine("\n  ▄█     █▄     ▄████████    ▄████████" +
+            WriteLine("\n  ▄█     █▄     ▄████████    ▄████████" +
                               "         ▄████████  ▄█     ▄▄▄▄███▄▄▄▄   ███ " +
                               "   █▄   ▄█          ▄████████     ███      ▄█" +
                               "█████▄     ▄████████ \n ███     ███   ███   " +
@@ -130,8 +132,8 @@ namespace tcgy_2_WarSimulator.Simulator.ConsoleOutput
                               "██                                           " +
                               "         ▀                                   " +
                               "            ███    ███ ");
-            FormattedWrite.Line(WindowWidth, '=');
-            FormattedWrite.Space(WindowWidth, 3);
+            DrawLine(WindowWidth, '=');
+            Space(WindowWidth, 3);
         }
         
     }
